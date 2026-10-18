@@ -1,5 +1,5 @@
 const express = require('express');
-const { scrapeWalmart } = require('./scraper');
+const { searchSerpApi } = require('./scraper');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -34,9 +34,9 @@ app.get('/search', async (req, res) => {
     return res.json({ source: 'cache', count: cached.length, results: cached });
   }
 
-  console.log(`[live] scraping Walmart for: ${query}`);
+  console.log(`[live] searching SerpApi for: ${query}`);
   try {
-    const results = await scrapeWalmart(query);
+    const results = await searchSerpApi(query);
     setCache(key, results);
     res.json({ source: 'live', count: results.length, results });
   } catch (err) {
