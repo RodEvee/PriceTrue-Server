@@ -47,7 +47,7 @@ app.get('/search', async (req, res) => {
 
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
-app.listen(PORT, () => {
-  console.log(`✅ PriceTrue server on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`✅ PriceTrue server on http://0.0.0.0:${PORT}`);
   console.log(`   Test: curl "http://localhost:${PORT}/search?q=duracell+aa+batteries"`);
 });
